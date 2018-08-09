@@ -3,31 +3,31 @@ import {
     View, 
     TextInput, 
     Text,
-    ProgressBarAndroid, 
+    TouchableOpacity, 
 } from 'react-native';
-
-import { 
-    Plus, 
-} from './icons/index';
-
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Debt from './Debt';
 
 
 class addDebt extends Component {
-    state = { 
-        recipient: '',
-        date: '',
-        currency: '',
-        amount: '',
-        description: '', 
-    };
+    constructor(props) {
+        super(props);
+        this.state = { 
+            debtArray: [],
+            recipient: '',
+            date: '',
+            currency: '',
+            amount: '',
+            description: '', 
+        };
+    }
 
     render() {
         const { 
             addDebtContainerStyle,
             payoffContainerStyle,
             moneyContainerStyle,
-            iconContainerStyle,
+            addButtonContainerStyle,
             recipientInputStyle,
             currencyInputStyle,
             amountInputStyle,
@@ -36,39 +36,39 @@ class addDebt extends Component {
             amountTextStyle,
             payoffTextStyle,
             descriptionTextStyle,
-        } = styles;
+        } = styles;        
 
         return (
             <View>
                 <View style={addDebtContainerStyle}>
                     <View>
                         <TextInput
-                            value={this.recipient}
-                            onChangeText={recipient => this.setState({ recipient })}
+                            onChangeText={(recipient) => this.setState({ recipient })}
+                            value={this.state.recipient}
                             placeholder='Name of recipient'
                             placeholderTextColor='#666666'
                             style={recipientInputStyle}
-                            underlineColorAndroid='rgba(0,0,0,0)'
+                            underlineColorAndroid='transparent'
                         />
                         <View style={payoffContainerStyle}>
                             <Text style={payoffTextStyle}>Payoff date:</Text>
                             <TextInput
+                                onChangeText={(date) => this.setState({ date })}
                                 value={this.state.date}
-                                onChangeText={date => this.setState({ date })}
                                 placeholder='00/00/00'
                                 placeholderTextColor='#666666'
                                 style={dateInputStyle}
-                                underlineColorAndroid='rgba(0,0,0,0)'
+                                underlineColorAndroid='transparent'
                             />
                         </View>
                         <Text style={descriptionTextStyle}>Description:</Text>
                         <TextInput
-                                value={this.description}
-                                onChangeText={description => this.setState({ description })}
+                                onChangeText={(description) => this.setState({ description })}
+                                value={this.state.description}
                                 placeholder='e.g. paid for my coffee'
                                 placeholderTextColor='#666666'
                                 style={descriptionInputStyle}
-                                underlineColorAndroid='rgba(0,0,0,0)'
+                                underlineColorAndroid='transparent'
                             />
                     </View>
 
@@ -76,35 +76,46 @@ class addDebt extends Component {
                         <Text style={amountTextStyle}>Amount:</Text>
                         <View style={moneyContainerStyle}>
                             <TextInput
-                                value={this.currency}
-                                onChangeText={currency => this.setState({ currency })}
+                                onChangeText={(currency) => this.setState({ currency })}
+                                value={this.state.currency}
                                 placeholder='$'
                                 placeholderTextColor='#666666'
                                 style={currencyInputStyle}
-                                underlineColorAndroid='rgba(0,0,0,0)'
-                                //keyboardType=''
+                                underlineColorAndroid='transparent'
                             />
                             <TextInput
-                                value={this.amount}
-                                onChangeText={amount => this.setState({ amount })}
+                                onChangeText={(amount) => this.setState({ amount })}
+                                value={this.state.amount}
                                 placeholder='0000'
                                 placeholderTextColor='#666666'
                                 style={amountInputStyle}
-                                underlineColorAndroid='rgba(0,0,0,0)'
+                                underlineColorAndroid='transparent'
                                 keyboardType='numeric'
                             />
                         </View>
                     </View>
                 </View>
-                <View style={iconContainerStyle}>
-                    {plus}
+                <View style={addButtonContainerStyle}>
+                    <TouchableOpacity /*onPress={ this.addDebt.bind(this) }*/>
+                        {check}
+                    </TouchableOpacity>
                 </View>
+
+                <Debt 
+                    recipient={this.state.recipient}
+                    date={this.state.date}
+                    currency={this.state.currency}
+                    amount={this.state.amount}
+                    description={this.state.description}
+                />
             </View>
         );
     };
-}
+};
 
-const plus = (<FontAwesome name='plus' size={50} color="#2b78e4" />)
+
+
+const check = (<FontAwesome name='check' size={50} color="#2b78e4" />)
 
 const styles = {
     addDebtContainerStyle: {
@@ -120,7 +131,7 @@ const styles = {
         //backgroundColor: '#a3a3a3',
         flexDirection: 'row',
     },
-    iconContainerStyle: {
+    addButtonContainerStyle: {
         //backgroundColor: '#a6a6a6',
         alignItems: 'center',
         paddingTop: -30,

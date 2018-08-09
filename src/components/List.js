@@ -1,16 +1,19 @@
-import React from 'react';
-import { } from 'react-native';
-import { Container, ContainerSection } from './common';
+import React, { Component } from 'react';
+import {
+    ScrollView,
+} from 'react-native';
 import AddDebt from './AddDebt';
-
-const List = () => {
-    return (
-        <Container>
-            <ContainerSection>
+import Debt from './Debt';
+ 
+class List extends Component {
+    render() {
+        return (
+            <ScrollView>
                 <AddDebt />
-            </ContainerSection>
-        </Container>
-    );
-};
-
+                <Debt />
+            </ScrollView>
+        );
+    };
+}
+ 
 export default List;
