@@ -4,6 +4,7 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class Debt extends Component {
     render() {
@@ -49,7 +50,7 @@ class Debt extends Component {
 
                     <View style={buttonContainerStyle}>
                         <TouchableOpacity style={buttonStyle}>
-
+                            {plus}
                         </TouchableOpacity>
                     </View>
             </View>
@@ -57,7 +58,7 @@ class Debt extends Component {
     };
 }
 
-
+const plus = (<FontAwesome name='plus' size={50} color="#2b78e4" />)
 
 const styles = {
     debtContainerStyle: {
@@ -79,9 +80,9 @@ const styles = {
         paddingTop: -30,
     },
     buttonStyle: {
-        borderWidth: 10,
-        borderRadius: 20,
-        borderColor: 'lightgrey',
+        //borderWidth: 10,
+        //borderRadius: 20,
+        //borderColor: 'lightgrey',
     },
     recipientInputedStyle: {
         paddingLeft: -5,
