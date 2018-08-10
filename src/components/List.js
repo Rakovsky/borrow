@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import {
     ScrollView,
 } from 'react-native';
-import AddDebt from './AddDebt';
-import Debt from './Debt';
+import AddNewDebt from './AddNewDebt';
  
 class List extends Component {
     render() {
         return (
             <ScrollView>
-                <AddDebt />
-                <Debt />
+                <AddNewDebt />
             </ScrollView>
         );
-    };
+    }
 }
  
 export default List;

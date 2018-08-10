@@ -5,7 +5,7 @@ import {
     Text,
     TouchableOpacity, 
 } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 import Debt from './Debt';
 
 
@@ -28,6 +28,7 @@ class addDebt extends Component {
             payoffContainerStyle,
             moneyContainerStyle,
             addButtonContainerStyle,
+            addButtonStyle,
             recipientInputStyle,
             currencyInputStyle,
             amountInputStyle,
@@ -63,13 +64,13 @@ class addDebt extends Component {
                         </View>
                         <Text style={descriptionTextStyle}>Description:</Text>
                         <TextInput
-                                onChangeText={(description) => this.setState({ description })}
-                                value={this.state.description}
+                            onChangeText={(description) => this.setState({ description })}
+                            value={this.state.description}
                                 placeholder='e.g. paid for my coffee'
                                 placeholderTextColor='#666666'
                                 style={descriptionInputStyle}
                                 underlineColorAndroid='transparent'
-                            />
+                        />
                     </View>
 
                     <View>
@@ -96,8 +97,8 @@ class addDebt extends Component {
                     </View>
                 </View>
                 <View style={addButtonContainerStyle}>
-                    <TouchableOpacity /*onPress={ this.addDebt.bind(this) }*/>
-                        {check}
+                    <TouchableOpacity style={addButtonStyle} /*onPress={ this.addDebt.bind(this) }*/>
+                        
                     </TouchableOpacity>
                 </View>
 
@@ -110,31 +111,33 @@ class addDebt extends Component {
                 />
             </View>
         );
-    };
-};
-
-
-
-const check = (<FontAwesome name='check' size={50} color="#2b78e4" />)
+    }
+}
 
 const styles = {
     addDebtContainerStyle: {
-        //backgroundColor: '#5b5b5b',
+        //backgroundColor: 'green',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'flex-start'
     },
     payoffContainerStyle: {
-        //backgroundColor: '#bfbfbf',
-        flexDirection: 'row',
+        //backgroundColor: 'red',
+        flexDirection: 'column',
     },
     moneyContainerStyle: {
-        //backgroundColor: '#a3a3a3',
+        //backgroundColor: 'blue',
         flexDirection: 'row',
     },
     addButtonContainerStyle: {
-        //backgroundColor: '#a6a6a6',
+        //backgroundColor: 'purple',
         alignItems: 'center',
         paddingTop: -30,
+    },
+    addButtonStyle: {
+        borderWidth: 10,
+        borderRadius: 20,
+        borderColor: 'lightgrey',
     },
     recipientInputStyle: {
         paddingLeft: -5,
@@ -171,16 +174,15 @@ const styles = {
         color: '#000',
     },
     payoffTextStyle: {
-        paddingTop: 100,
+        paddingTop: 0,
         fontSize: 18,
         color: '#000',
-        paddingTop: 0,
     },
     descriptionTextStyle: {
         fontSize: 20,
         color: '#000',
         paddingTop: 0,
     },
-}
+};
 
 export default addDebt;
