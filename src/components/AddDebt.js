@@ -5,11 +5,10 @@ import {
     Text,
     TouchableOpacity, 
 } from 'react-native';
-
 import Debt from './Debt';
 
 
-class addDebt extends Component {
+class AddDebt extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -27,8 +26,8 @@ class addDebt extends Component {
             addDebtContainerStyle,
             payoffContainerStyle,
             moneyContainerStyle,
-            addButtonContainerStyle,
-            addButtonStyle,
+            buttonContainerStyle,
+            buttonStyle,
             recipientInputStyle,
             currencyInputStyle,
             amountInputStyle,
@@ -96,8 +95,8 @@ class addDebt extends Component {
                         </View>
                     </View>
                 </View>
-                <View style={addButtonContainerStyle}>
-                    <TouchableOpacity style={addButtonStyle} /*onPress={ this.addDebt.bind(this) }*/>
+                <View style={buttonContainerStyle}>
+                    <TouchableOpacity style={buttonStyle} /*onPress={ this.addDebt.bind(this) }*/>
                         
                     </TouchableOpacity>
                 </View>
@@ -129,12 +128,12 @@ const styles = {
         //backgroundColor: 'blue',
         flexDirection: 'row',
     },
-    addButtonContainerStyle: {
+    buttonContainerStyle: {
         //backgroundColor: 'purple',
         alignItems: 'center',
         paddingTop: -30,
     },
-    addButtonStyle: {
+    buttonStyle: {
         borderWidth: 10,
         borderRadius: 20,
         borderColor: 'lightgrey',
@@ -185,4 +184,4 @@ const styles = {
     },
 };
 
-export default addDebt;
+export default AddDebt;

@@ -11,8 +11,8 @@ class Debt extends Component {
             debtContainerStyle,
             payoffContainerStyle,
             moneyContainerStyle,
-            addButtonContainerStyle,
-            addButtonStyle,
+            buttonContainerStyle,
+            buttonStyle,
             recipientInputedStyle,
             currencyInputedStyle,
             amountInputedStyle,
@@ -47,8 +47,8 @@ class Debt extends Component {
                     </View>
                 </View>
 
-                    <View style={addButtonContainerStyle}>
-                        <TouchableOpacity style={addButtonStyle}>
+                    <View style={buttonContainerStyle}>
+                        <TouchableOpacity style={buttonStyle}>
 
                         </TouchableOpacity>
                     </View>
@@ -73,12 +73,12 @@ const styles = {
         //backgroundColor: 'blue',
         flexDirection: 'row',
     },
-    addButtonContainerStyle: {
+    buttonContainerStyle: {
         //backgroundColor: 'purple',
         alignItems: 'center',
         paddingTop: -30,
     },
-    addButtonStyle: {
+    buttonStyle: {
         borderWidth: 10,
         borderRadius: 20,
         borderColor: 'lightgrey',
