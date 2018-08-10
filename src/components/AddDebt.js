@@ -5,14 +5,20 @@ import {
     Text,
     TouchableOpacity, 
 } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Debt from './Debt';
-
 
 class AddDebt extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            debtArray: [],
+            debtArray: [{
+                'recipient': '',
+                'date': '',
+                'currency': '',
+                'amount': '',
+                'description': '',
+            }],
             recipient: '',
             date: '',
             currency: '',
@@ -25,9 +31,9 @@ class AddDebt extends Component {
         const { 
             addDebtContainerStyle,
             payoffContainerStyle,
+            leftContainerStyle,
             moneyContainerStyle,
             buttonContainerStyle,
-            buttonStyle,
             recipientInputStyle,
             currencyInputStyle,
             amountInputStyle,
@@ -36,12 +42,16 @@ class AddDebt extends Component {
             amountTextStyle,
             payoffTextStyle,
             descriptionTextStyle,
-        } = styles;        
+        } = styles;    
+        
+        let debts = this.state.debtArray.map((val, key) => {
+            return <Debt key={key} keyval={key} val={val} deleteMethod={ ()=>this.deleteDebt(key) } />
+        });
 
         return (
             <View>
                 <View style={addDebtContainerStyle}>
-                    <View>
+                    <View style={leftContainerStyle}>
                         <TextInput
                             onChangeText={(recipient) => this.setState({ recipient })}
                             value={this.state.recipient}
@@ -96,29 +106,41 @@ class AddDebt extends Component {
                     </View>
                 </View>
                 <View style={buttonContainerStyle}>
-                    <TouchableOpacity style={buttonStyle} /*onPress={ this.addDebt.bind(this) }*/>
-                        
+                    <TouchableOpacity onPress={ this.addDebt.bind(this) }>
+                        {check}
                     </TouchableOpacity>
                 </View>
 
-                <Debt 
-                    recipient={this.state.recipient}
-                    date={this.state.date}
-                    currency={this.state.currency}
-                    amount={this.state.amount}
-                    description={this.state.description}
-                />
+                {debts}
             </View>
         );
     }
+
+    addDebt() {
+        if (this.state.recipient) {
+            this.state.debtArray.push({ 'recipient': this.state.recipient })
+            this.setState({ debtArray: this.state.debtArray })
+            this.setState({ recipient: '' })
+        }
+    }
+
+    deleteDebt(key) {
+        this.state.debtArray.splice(key, 1);
+        this.setState({ debtArray: this.state.debtArray })
+    }
 }
+
+const check = (<FontAwesome name='check' size={50} color="#2b78e4" />);
 
 const styles = {
     addDebtContainerStyle: {
         //backgroundColor: 'green',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+    },
+    leftContainerStyle: {
+        paddingTop: 6,
     },
     payoffContainerStyle: {
         //backgroundColor: 'red',
@@ -131,12 +153,6 @@ const styles = {
     buttonContainerStyle: {
         //backgroundColor: 'purple',
         alignItems: 'center',
-        paddingTop: -30,
-    },
-    buttonStyle: {
-        borderWidth: 10,
-        borderRadius: 20,
-        borderColor: 'lightgrey',
     },
     recipientInputStyle: {
         paddingLeft: -5,

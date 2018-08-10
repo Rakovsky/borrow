@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -13,7 +13,6 @@ class Debt extends Component {
             payoffContainerStyle,
             moneyContainerStyle,
             buttonContainerStyle,
-            buttonStyle,
             recipientInputedStyle,
             currencyInputedStyle,
             amountInputedStyle,
@@ -25,40 +24,39 @@ class Debt extends Component {
         } = styles;    
         
         return (
-            <View>
+            <View key={this.props.keyval}>
                 <View style={debtContainerStyle}>
                     <View>
                         <Text style={recipientInputedStyle}>
-                            {this.props.recipient}
+                            {this.props.val.recipient}
                         </Text>
                         <View style={payoffContainerStyle}>
                             <Text style={payoffTextStyle}>Payoff date:</Text>
-                            <Text style={dateInputedStyle}>{this.props.date}</Text>
+                            <Text style={dateInputedStyle}>{this.props.val.date}</Text>
                         </View>
                         <Text style={descriptionTextStyle}>Description:</Text>
-                        <Text style={descriptionInputedStyle}>{this.props.description}</Text>
+                        <Text style={descriptionInputedStyle}>{this.props.val.description}</Text>
                     </View>
                 
                     <View>
                         <Text style={amountTextStyle}>Amount:</Text>
                         <View style={moneyContainerStyle}>
-                            <Text style={currencyInputedStyle}>{this.props.currency}</Text>
-                            <Text style={amountInputedStyle}>{this.props.amount}</Text>
+                            <Text style={currencyInputedStyle}>{this.props.val.currency}</Text>
+                            <Text style={amountInputedStyle}>{this.props.val.amount}</Text>
+                        </View>
+                        <View style={buttonContainerStyle}>
+                            <TouchableOpacity onPress={this.props.deleteMethod}>
+                                {times}
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-
-                    <View style={buttonContainerStyle}>
-                        <TouchableOpacity style={buttonStyle}>
-                            {plus}
-                        </TouchableOpacity>
-                    </View>
             </View>
         );
-    };
+    }
 }
 
-const plus = (<FontAwesome name='plus' size={50} color="#2b78e4" />)
+const times = (<FontAwesome name='times' size={50} color="#2b78e4" />);
 
 const styles = {
     debtContainerStyle: {
@@ -77,12 +75,6 @@ const styles = {
     buttonContainerStyle: {
         //backgroundColor: 'purple',
         alignItems: 'center',
-        paddingTop: -30,
-    },
-    buttonStyle: {
-        //borderWidth: 10,
-        //borderRadius: 20,
-        //borderColor: 'lightgrey',
     },
     recipientInputedStyle: {
         paddingLeft: -5,
@@ -128,6 +120,6 @@ const styles = {
         color: '#000',
         paddingTop: 0,
     },
-}
+};
 
 export default Debt;
